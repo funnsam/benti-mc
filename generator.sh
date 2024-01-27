@@ -15,8 +15,10 @@ if ! command -v zip &> /dev/null; then
 fi
 
 rm "$1" "$1.zip" -rf || true
-mkdir -p "$1/assets/minecraft/lang"
-json-funny $3 benti $1/assets/minecraft/lang/en_us.json --skip "language.code"
+mkdir -p "$1/assets/minecraft/lang" "$1/assets/minecraft/font" "$1/assets/minecraft/textures/font"
+cp "./special.png" "$1/assets/minecraft/textures/font/special.png"
+cp "./font.json" "$1/assets/minecraft/font/default.json"
+json-funny $3 benti $1/assets/minecraft/lang/en_us.json --skip "language.code" --minecraft
 
 echo "{\"pack\":{\"pack_format\": $2, \"description\": \":b:3nti xdxd\"}}" > $1/pack.mcmeta
 
